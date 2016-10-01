@@ -1,0 +1,32 @@
+apply plugin: 'com.android.model.library'
+
+model {
+    android {
+        publishNonDefault true
+        compileSdkVersion 23
+        buildToolsVersion "23.0.3"
+
+        defaultConfig {
+            minSdkVersion.apiLevel 15
+            targetSdkVersion.apiLevel 23
+            versionCode 1
+            versionName "1.0"
+        }
+        buildTypes {
+            debug {
+                minifyEnabled false
+                debuggable true
+            }
+        }
+        ndk{
+            moduleName "mylib-jni"
+            ldLibs.add("log")
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+}
